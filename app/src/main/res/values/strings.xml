@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Maemo</string>
+    <string name="action_home">Home</string>
+    <string name="action_search">Search</string>
+    <string name="action_dictionary">Dictionary</string>
+    <string name="action_settings">Settings</string>
+    <string name="MemoTitleHint">タイトル</string>
+    <string name="MemoContentHint">メモ</string>
+    <string name="HintFact">事実</string>
+    <string name="HintAbstract">抽象</string>
+    <string name="HintDiversion">転用</string>
+</resources>

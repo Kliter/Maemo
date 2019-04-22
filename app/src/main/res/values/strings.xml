@@ -9,4 +9,10 @@
     <string name="HintFact">事実</string>
     <string name="HintAbstract">抽象</string>
     <string name="HintDiversion">転用</string>
+    <string name="OK">OK</string>
+    <string name="Close">閉じる</string>
+    <string name="WordTitle">単語</string>
+    <string name="WordContent">意味</string>
+    <string name="Edit">編集</string>
+    <string name="ActionDelete">Delete</string>
 </resources>

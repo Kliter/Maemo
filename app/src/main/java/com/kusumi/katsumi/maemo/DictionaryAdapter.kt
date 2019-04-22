@@ -8,8 +8,7 @@ import android.view.ViewGroup
 class DictionaryAdapter(
 	private val context: Context,
 	private val itemClickListener: DictionaryViewHolder.ItemClickListener,
-	private val wordTitleList: List<String>,
-	private val wordContentList: List<String>
+	private val wordList: MutableList<Word>
 ): RecyclerView.Adapter<DictionaryViewHolder>() {
 
 	private var mRecyclerView: RecyclerView? = null
@@ -38,13 +37,13 @@ class DictionaryAdapter(
 	}
 
 	override fun getItemCount(): Int {
-		return wordTitleList.size
+		return wordList.size
 	}
 
 	override fun onBindViewHolder(holder: DictionaryViewHolder, position: Int) {
 		holder.let {
-			it.tvWordTitle.text = wordTitleList[position]
-			it.tvWordContent.text = wordContentList[position]
+			it.tvWordTitle.text = wordList[position].wordTitle
+			it.tvWordContent.text = wordList[position].wordContent
 		}
 	}
 }

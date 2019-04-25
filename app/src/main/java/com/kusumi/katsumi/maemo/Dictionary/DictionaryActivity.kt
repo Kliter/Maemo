@@ -113,7 +113,7 @@ class DictionaryActivity: AppCompatActivity(),
 		if (item?.itemId == R.id.actionDelete) {
 			val deleteWordIdList = mutableListOf<Int>()
 			for (i in 0 until wordList.size) {
-				val word = (rvWordCardContainer.adapter as DictionaryAdapter).wordList.get(i)
+				val word = (rvWordCardContainer.adapter as DictionaryAdapter).wordList[i]
 				if (word.isSelected) {
 					deleteWordIdList.add(word._id)
 				}

@@ -5,7 +5,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.kusumi.katsumi.maemo.Dictionary.DictionaryDBOpenHelper
 
-class DatabaseHandler(context: Context) {
+class DatabaseHandler {
 
 	companion object {
 

@@ -4,18 +4,11 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.kusumi.katsumi.maemo.DB.BaseDBOpenHelper
 
-class DictionaryDBOpenHelper(context: Context): SQLiteOpenHelper(context,
-	DATABASE_NAME, null,
-	DATABASE_VERSION
-) {
+class DictionaryDBOpenHelper(context: Context): BaseDBOpenHelper(context) {
 
 	companion object {
-		private const val INSERT_FAILED = -1L
-		private const val UPDATE_SUCCEED = 1
-
-		private const val DATABASE_VERSION = 1
-		private const val DATABASE_NAME = "MaemoDB.db"
 		private const val TABLE_NAME = "Dictionary"
 		private const val _ID = "_id"
 		private const val COLUMN_NAME_WORDTITLE = "wordtitle"
@@ -75,7 +68,4 @@ class DictionaryDBOpenHelper(context: Context): SQLiteOpenHelper(context,
 		db.execSQL(SQL_DELETE_ENTRIES)
 	}
 
-	override fun onDowngrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-		onUpgrade(db, oldVersion, newVersion)
-	}
 }

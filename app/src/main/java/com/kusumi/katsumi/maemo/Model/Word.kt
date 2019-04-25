@@ -1,9 +1,10 @@
-package com.kusumi.katsumi.maemo
+package com.kusumi.katsumi.maemo.Model
 
 import java.io.Serializable
 
 class Word(): Serializable {
 
+    var isSelected: Boolean = false
     var _id: Int = 0
     var wordTitle: String? = null
     var wordContent: String? = null

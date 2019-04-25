@@ -1,14 +1,17 @@
-package com.kusumi.katsumi.maemo
+package com.kusumi.katsumi.maemo.Dictionary
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.kusumi.katsumi.maemo.R
+import com.kusumi.katsumi.maemo.Model.Word
+import kotlinx.android.synthetic.main.snippet_wordcard_item.view.*
 
 class DictionaryAdapter(
 	private val context: Context,
 	private val itemClickListener: DictionaryViewHolder.ItemClickListener,
-	private val wordList: MutableList<Word>
+	val wordList: MutableList<Word>
 ): RecyclerView.Adapter<DictionaryViewHolder>() {
 
 	private var mRecyclerView: RecyclerView? = null
@@ -44,6 +47,12 @@ class DictionaryAdapter(
 		holder.let {
 			it.tvWordTitle.text = wordList[position].wordTitle
 			it.tvWordContent.text = wordList[position].wordContent
+			it.accbWord.isChecked = wordList[position].isSelected
+			it.accbWord.tag = position
+			it.accbWord.setOnClickListener {
+				val pos: Int = it.accbWord.tag as Int
+				wordList[pos].isSelected = !wordList[pos].isSelected
+			}
 		}
 	}
 }

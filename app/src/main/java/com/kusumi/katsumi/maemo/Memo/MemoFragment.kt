@@ -1,4 +1,4 @@
-package com.kusumi.katsumi.maemo
+package com.kusumi.katsumi.maemo.Memo
 
 import android.os.Bundle
 import android.support.design.widget.TextInputEditText
@@ -8,9 +8,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_memo.*
+import com.kusumi.katsumi.maemo.R
 
 class MemoFragment: Fragment(), MemoCardListViewHolder.ItemClickListener {
 
@@ -41,7 +40,8 @@ class MemoFragment: Fragment(), MemoCardListViewHolder.ItemClickListener {
 		)
 
 		val rvMemoCardContainer = view.findViewById<RecyclerView>(R.id.rvMemoCardContainer)
-		rvMemoCardContainer.adapter = MemoCardListAdapter(context!!, this, factList, abstractList, diversionList)
+		rvMemoCardContainer.adapter =
+			MemoCardListAdapter(context!!, this, factList, abstractList, diversionList)
 		rvMemoCardContainer.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
 

@@ -1,9 +1,9 @@
-package com.kusumi.katsumi.maemo
+package com.kusumi.katsumi.maemo.Tools
 
-import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import com.kusumi.katsumi.maemo.Dictionary.DictionaryDBOpenHelper
 
 class DatabaseHandler(context: Context) {
 
@@ -20,7 +20,7 @@ class DatabaseHandler(context: Context) {
                     null,
                     null,
                     null,
-                    null
+                    "_id desc"
             )
 			return cursor
 		}
@@ -39,6 +39,18 @@ class DatabaseHandler(context: Context) {
 		 */
 		fun insertWord(db: SQLiteDatabase, wordTitle: String, wordContent: String): Boolean {
 			return DictionaryDBOpenHelper.insert(db, wordTitle, wordContent)
+		}
+
+		fun deleteWord(db: SQLiteDatabase, deleteWordIdList: MutableList<Int>) {
+			val deleteTerms = StringBuilder("_id in (")
+			for (i in 0 until deleteWordIdList.size) {
+				deleteTerms.append(deleteWordIdList[i])
+				if (i != deleteWordIdList.size -1) {
+					deleteTerms.append(" , ")
+				}
+			}
+			deleteTerms.append(")")
+			DictionaryDBOpenHelper.delete(db, deleteTerms.toString())
 		}
 
 		/**

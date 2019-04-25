@@ -16,12 +16,12 @@
         <item name="android:background">@color/colorTransparent</item>
     </style>
 
-    <style name="WordTitle" parent="TextAppearance.MaterialComponents.Body2">
+    <style name="WordTitle" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="WordContent" parent="TextAppearance.MaterialComponents.Body2">
+    <style name="WordContent" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textColor">@color/colorSubBlack</item>
     </style>
 

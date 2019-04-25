@@ -1,5 +1,6 @@
-package com.kusumi.katsumi.maemo
+package com.kusumi.katsumi.maemo.Dictionary
 
+import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
@@ -10,10 +11,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import com.kusumi.katsumi.maemo.*
+import com.kusumi.katsumi.maemo.Model.Word
+import com.kusumi.katsumi.maemo.Tools.DatabaseHandler
 import kotlinx.android.synthetic.main.activity_dictionary.*
 import kotlinx.android.synthetic.main.snippet_toolbar.*
 
-class DictionaryActivity: AppCompatActivity(), DictionaryViewHolder.ItemClickListener {
+class DictionaryActivity: AppCompatActivity(),
+	DictionaryViewHolder.ItemClickListener {
 
     // Bundle key
 	private val WORD = "WORD"
@@ -32,11 +37,31 @@ class DictionaryActivity: AppCompatActivity(), DictionaryViewHolder.ItemClickLis
 		setContentView(R.layout.activity_dictionary)
 
 		setupWidgets()
+	}
+
+	private fun setupWidgets() {
+		val toolbar: Toolbar = appbar
+		this.setSupportActionBar(toolbar)
+		supportActionBar?.let {
+			it.setDisplayHomeAsUpEnabled(true)
+			it.setHomeButtonEnabled(true)
+		}
+
+		bottomNavigationView.selectedItemId = R.id.action_dictionary
+		BottomNavigationViewManager.setupBottomNavigationView(
+			this,
+			bottomNavigationView
+		)
+
+		fabInsertWord.setOnClickListener {
+			WordDialogFragment().show(supportFragmentManager, "launch")
+		}
 
 		dbOpenHelper = DictionaryDBOpenHelper(this)
 		dictionaryReadableDB = dbOpenHelper.readableDatabase
 
-		val cursor: Cursor = DatabaseHandler.existsTable(dictionaryReadableDB, TABLE_NAME)
+		val cursor: Cursor =
+			DatabaseHandler.existsTable(dictionaryReadableDB, TABLE_NAME)
 		cursor.moveToFirst()
 
 		if (cursor.getString(0) == TABLE_EXISTS) {
@@ -45,18 +70,6 @@ class DictionaryActivity: AppCompatActivity(), DictionaryViewHolder.ItemClickLis
 
 		rvWordCardContainer.adapter = DictionaryAdapter(this, this, wordList)
 		rvWordCardContainer.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-	}
-
-	private fun setupWidgets() {
-		val toolbar: Toolbar = appbar
-		this.setSupportActionBar(toolbar)
-
-		bottomNavigationView.selectedItemId = R.id.action_dictionary
-		BottomNavigationViewManager.setupBottomNavigationView(this, bottomNavigationView)
-
-		fabInsertWord.setOnClickListener {
-			WordDialogFragment().show(supportFragmentManager, "launch")
-		}
 	}
 
 	private fun setupWordList() {
@@ -81,10 +94,11 @@ class DictionaryActivity: AppCompatActivity(), DictionaryViewHolder.ItemClickLis
         val arguments = Bundle()
 		arguments.putSerializable(
 				WORD,
-				Word(wordList[position]._id,
-						wordList[position].wordTitle,
-						wordList[position].wordContent
-				)
+			Word(
+				wordList[position]._id,
+				wordList[position].wordTitle,
+				wordList[position].wordContent
+			)
 		)
         fragment.arguments = arguments
         fragment.show(supportFragmentManager, "launch")
@@ -96,6 +110,36 @@ class DictionaryActivity: AppCompatActivity(), DictionaryViewHolder.ItemClickLis
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+		if (item?.itemId == R.id.actionDelete) {
+			val deleteWordIdList = mutableListOf<Int>()
+			for (i in 0 until wordList.size) {
+				val word = (rvWordCardContainer.adapter as DictionaryAdapter).wordList.get(i)
+				if (word.isSelected) {
+					deleteWordIdList.add(word._id)
+				}
+			}
+			DatabaseHandler.deleteWord(
+				DictionaryDBOpenHelper(
+					this
+				).writableDatabase, deleteWordIdList
+			)
+			reload()
+		}
 		return super.onOptionsItemSelected(item)
+	}
+
+	fun reload() {
+		val intent = intent
+		overridePendingTransition(0, 0)
+		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+		finish()
+
+		overridePendingTransition(0, 0)
+		startActivity(intent)
+	}
+
+	override fun onRestart() {
+		super.onRestart()
+		setupWidgets()
 	}
 }

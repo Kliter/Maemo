@@ -1,4 +1,4 @@
-package com.kusumi.katsumi.maemo
+package com.kusumi.katsumi.maemo.Tools
 
 import android.support.design.widget.TextInputEditText
 

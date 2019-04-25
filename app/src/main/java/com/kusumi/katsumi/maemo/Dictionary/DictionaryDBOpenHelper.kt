@@ -1,11 +1,14 @@
-package com.kusumi.katsumi.maemo
+package com.kusumi.katsumi.maemo.Dictionary
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DictionaryDBOpenHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class DictionaryDBOpenHelper(context: Context): SQLiteOpenHelper(context,
+	DATABASE_NAME, null,
+	DATABASE_VERSION
+) {
 
 	companion object {
 		private const val INSERT_FAILED = -1L
@@ -23,6 +26,14 @@ class DictionaryDBOpenHelper(context: Context): SQLiteOpenHelper(context, DATABA
 
 		private const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS $TABLE_NAME"
 
+		/**
+		 * Update word data(wordtitle, wordcontent) from word dialog.
+		 *
+		 * @param db It will be passed writable database.
+		 * @param wordTitle Entered wordTitle.
+		 * @param wordContent Entered WordContent.
+		 * @return If update process is succeed, this method will return true.
+		 */
 		fun update(db: SQLiteDatabase, id: Int, wordTitle: String, wordContent: String): Boolean {
 			val values = ContentValues()
 			values.put("wordtitle", wordTitle)
@@ -31,14 +42,28 @@ class DictionaryDBOpenHelper(context: Context): SQLiteOpenHelper(context, DATABA
 		}
 
 		/**
-		 * Insert word data(wordtitle and wordcontent) from word dialog.
-		 * If insert process is succeed, this method will return true.
+		 * Insert word data(wordtitle, wordcontent) from word dialog.
+		 *
+		 * @param db It will be passed writable database.
+		 * @param wordTitle Entered wordTitle.
+		 * @param wordContent Entered WordContent.
+		 * @return If insert process is succeed, this method will return true.
 		 */
 		fun insert(db: SQLiteDatabase, wordTitle: String, wordContent: String): Boolean {
 			val values = ContentValues()
 			values.put("wordtitle", wordTitle)
 			values.put("wordcontent", wordContent)
 			return db.insert(TABLE_NAME, null, values) != INSERT_FAILED
+		}
+
+		/**
+		 * Delete word data according to deleteTerms.
+		 *
+		 * @param db
+		 * @param deleteTerms This param is used for whereClause of db.delete()
+		 */
+		fun delete(db: SQLiteDatabase, deleteTerms: String) {
+			db.delete(TABLE_NAME, deleteTerms, null)
 		}
 	}
 

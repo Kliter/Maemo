@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<android.support.design.widget.TextInputLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/tilWordTitle"
+		android:layout_margin="8dp"
+		app:errorEnabled="true"
+		app:counterEnabled="true"
+		app:hintEnabled="true"
+		app:hintAnimationEnabled="true">
+
+		<android.support.design.widget.TextInputEditText
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/tietWordTitle"
+			android:hint="@string/WordTitle"
+			android:imeOptions="actionSend"
+			android:inputType="text"
+			style="@style/TextAppearance.MaterialComponents.Body1"/>
+
+	</android.support.design.widget.TextInputLayout>
+
+	<android.support.design.widget.TextInputLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/tilTextContent"
+		android:layout_below="@id/tilWordTitle"
+		android:layout_margin="8dp"
+		app:errorEnabled="true"
+		app:counterEnabled="true"
+		app:hintEnabled="true"
+		app:hintAnimationEnabled="true">
+
+		<android.support.design.widget.TextInputEditText
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/tietWordContent"
+			android:hint="@string/WordContent"
+			android:imeOptions="actionSend"
+			android:inputType="text"
+			style="@style/TextAppearance.MaterialComponents.Body1"/>
+
+	</android.support.design.widget.TextInputLayout>
+</RelativeLayout>

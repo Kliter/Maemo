@@ -1,4 +1,4 @@
-package com.kusumi.katsumi.maemo
+package com.kusumi.katsumi.maemo.Memo
 
 import android.support.design.widget.TextInputEditText
 import android.support.v7.widget.RecyclerView

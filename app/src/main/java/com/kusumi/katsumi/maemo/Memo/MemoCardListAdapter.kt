@@ -1,11 +1,11 @@
-package com.kusumi.katsumi.maemo
+package com.kusumi.katsumi.maemo.Memo
 
 import android.content.Context
 import android.support.design.widget.TextInputEditText
 import android.support.v7.widget.RecyclerView
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.kusumi.katsumi.maemo.R
 
 class MemoCardListAdapter(
 	private val context: Context,

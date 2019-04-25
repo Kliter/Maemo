@@ -1,60 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-		xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:card_view="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_margin="8dp"
+	android:foreground="?android:attr/selectableItemBackground"
+	card_view:cardElevation="2dp">
+
+	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		xmlns:card_view="http://schemas.android.com/apk/res-auto"
-		android:layout_margin="8dp"
-		card_view:cardElevation="2dp"
-		android:foreground="?android:attr/selectableItemBackground">
-	
-	<LinearLayout
+		android:layout_height="wrap_content">
+
+		<android.support.v7.widget.AppCompatCheckBox
+			android:id="@+id/accbWord"
+			android:layout_width="36dp"
+			android:layout_height="36dp"
+			android:layout_centerVertical="true"
+			android:layout_margin="4dp" />
+
+		<TextView
+			android:id="@+id/tvWordTitle"
+			style="@style/WordTitle"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="vertical">
-		
-		<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-			
-			<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:id="@+id/tvWordTitleLabel"
-					android:text="単語"
-					android:layout_margin="8dp"
-					style="@style/TextAppearance.MaterialComponents.Body1"/>
-			
-			<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:id="@+id/tvWordTitle"
-					android:layout_margin="8dp"
-					style="@style/TextAppearance.MaterialComponents.Body2"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-			
-			<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:id="@+id/tvWordContentLabel"
-					android:layout_margin="8dp"
-					android:text="備考"
-					style="@style/TextAppearance.MaterialComponents.Body1"/>
-			
-			<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:id="@+id/tvWordContent"
-					android:layout_margin="8dp"
-					style="@style/TextAppearance.MaterialComponents.Body2"/>
-		
-		</LinearLayout>
-	</LinearLayout>
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:layout_marginBottom="2dp"
+			android:layout_marginStart="4dp"
+			android:layout_marginEnd="4dp"
+			android:layout_toEndOf="@+id/accbWord" />
+
+		<TextView
+			android:id="@+id/tvWordContent"
+			style="@style/WordContent"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/tvWordTitle"
+			android:layout_marginTop="2dp"
+			android:layout_marginBottom="16dp"
+			android:layout_marginStart="4dp"
+			android:layout_marginEnd="4dp"
+			android:layout_toEndOf="@+id/accbWord" />
+
+	</RelativeLayout>
 </android.support.v7.widget.CardView>

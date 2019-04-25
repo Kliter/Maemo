@@ -3,6 +3,8 @@ package com.kusumi.katsumi.maemo
 import android.content.Intent
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import com.kusumi.katsumi.maemo.Dictionary.DictionaryActivity
+import com.kusumi.katsumi.maemo.Memo.MainActivity
 
 class BottomNavigationViewManager {
 	companion object {

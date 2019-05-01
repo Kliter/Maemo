@@ -1,4 +1,4 @@
-package com.kusumi.katsumi.maemo.Dictionary
+package com.kusumi.katsumi.maemo.Word
 
 import android.app.Dialog
 import android.content.Context
@@ -9,10 +9,11 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-import com.kusumi.katsumi.maemo.Tools.DatabaseHandler
+import com.kusumi.katsumi.maemo.DB.WordDBOpenHelper
+import com.kusumi.katsumi.maemo.Util.DatabaseHandler
 import com.kusumi.katsumi.maemo.Model.Word
 import com.kusumi.katsumi.maemo.R
-import com.kusumi.katsumi.maemo.Tools.StringUtil
+import com.kusumi.katsumi.maemo.Util.StringUtil
 import kotlinx.android.synthetic.main.fragment_word_dialog.view.*
 
 class WordDialogFragment: DialogFragment() {
@@ -54,7 +55,7 @@ class WordDialogFragment: DialogFragment() {
                             view.tietWordContent.text.toString()
                         )
                     ) {
-                        val helper = DictionaryDBOpenHelper(context as Context)
+                        val helper = WordDBOpenHelper(context as Context)
                         val db: SQLiteDatabase = helper.writableDatabase
                         val isQuerySucceed: Boolean
                         if (isFromEdit) {
@@ -73,7 +74,7 @@ class WordDialogFragment: DialogFragment() {
                             )
                         }
                         if (isQuerySucceed) {
-                            (activity as DictionaryActivity).reload()
+                            (activity as WordActivity).reload()
                         }
                     }
                 }

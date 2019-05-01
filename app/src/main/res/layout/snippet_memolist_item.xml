@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:card_view="http://schemas.android.com/apk/res-auto"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="8dp"
+		android:foreground="?android:attr/selectableItemBackground"
+		card_view:cardElevation="2dp">
+	
+	<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+		
+		<android.support.v7.widget.AppCompatCheckBox
+				android:id="@+id/accbMemo"
+				android:layout_width="48dp"
+				android:layout_height="48dp"
+				android:layout_centerVertical="true"
+				android:layout_margin="4dp"/>
+		
+		<TextView
+				android:id="@+id/tvFact"
+				style="@style/WordTitle"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:layout_marginBottom="4dp"
+				android:layout_marginStart="4dp"
+				android:layout_marginEnd="4dp"
+				android:layout_toEndOf="@+id/accbMemo"/>
+		
+		<TextView
+				android:id="@+id/tvAbstract"
+				style="@style/WordContent"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/tvFact"
+				android:layout_marginTop="4dp"
+				android:layout_marginBottom="4dp"
+				android:layout_marginStart="4dp"
+				android:layout_marginEnd="4dp"
+				android:layout_toEndOf="@+id/accbMemo"/>
+		
+		<TextView
+				android:id="@+id/tvDiversion"
+				style="@style/WordContent"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/tvAbstract"
+				android:layout_marginTop="4dp"
+				android:layout_marginBottom="16dp"
+				android:layout_marginStart="4dp"
+				android:layout_marginEnd="4dp"
+				android:layout_toEndOf="@+id/accbMemo"/>
+	
+	</RelativeLayout>
+</android.support.v7.widget.CardView>

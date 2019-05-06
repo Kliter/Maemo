@@ -76,6 +76,7 @@ class WordActivity: AppCompatActivity(), ItemClickListener, PositiveButtonClickL
 			word._id = cursor.getInt(0)
 			word.wordTitle = cursor.getString(1)
 			word.wordContent = cursor.getString(2)
+			word.updateTime = cursor.getLong(3)
 			mWordList.add(word)
 			cursor.moveToNext()
 		}

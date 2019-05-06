@@ -8,6 +8,7 @@ class Word(): Serializable {
     var _id: Int = 0
     var wordTitle: String? = null
     var wordContent: String? = null
+    var updateTime: Long? = null
 
     constructor(id: Int, wordTitle: String?, wordContent: String?): this() {
         this._id = id

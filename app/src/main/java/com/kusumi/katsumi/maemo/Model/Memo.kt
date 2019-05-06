@@ -9,6 +9,7 @@ class Memo(): Serializable {
 	var factText: String? = null
 	var abstractText: String? = null
 	var diversionText: String? = null
+	var updateTime: Long? = null
 
 	constructor(id: Int, factText: String?, abstractText: String?, diversionText: String?): this() {
 		this._id = id

@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity(), ItemClickListener, PositiveButtonClick
             memo.factText = cursor.getString(1)
             memo.abstractText = cursor.getString(2)
             memo.diversionText = cursor.getString(3)
+            memo.updateTime = cursor.getLong(4)
             mMemoList.add(memo)
             cursor.moveToNext()
         }

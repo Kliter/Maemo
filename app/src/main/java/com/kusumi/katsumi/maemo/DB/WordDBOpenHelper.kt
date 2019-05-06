@@ -3,6 +3,7 @@ package com.kusumi.katsumi.maemo.DB
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import com.kusumi.katsumi.maemo.Util.DateConverter
 
 class WordDBOpenHelper(context: Context): BaseDBOpenHelper(context) {
 
@@ -14,6 +15,7 @@ class WordDBOpenHelper(context: Context): BaseDBOpenHelper(context) {
 			val values = ContentValues()
 			values.put("wordtitle", wordTitle)
 			values.put("wordcontent", wordContent)
+			values.put("updatetime", DateConverter.getCurrentDate())
 			return db.update(TABLE_NAME, values, "$_ID = $id", null) == UPDATE_SUCCEED
 		}
 
@@ -21,6 +23,7 @@ class WordDBOpenHelper(context: Context): BaseDBOpenHelper(context) {
 			val values = ContentValues()
 			values.put("wordtitle", wordTitle)
 			values.put("wordcontent", wordContent)
+			values.put("updatetime", DateConverter.getCurrentDate())
 			return db.insert(TABLE_NAME, null, values) != INSERT_FAILED
 		}
 	}

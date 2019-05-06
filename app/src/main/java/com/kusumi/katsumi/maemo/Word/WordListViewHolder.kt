@@ -9,4 +9,5 @@ class WordListViewHolder(view: View): RecyclerView.ViewHolder(view) {
 	var appcompat_checkbox = view.appcompat_checkbox!!
 	var textview_word_title = view.textview_word_title!!
 	var textview_word_content = view.textview_word_content!!
+	var textview_update_time = view.textview_update_time!!
 }

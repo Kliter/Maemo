@@ -24,7 +24,7 @@ class DatabaseHandler {
 		fun getWordData(db: SQLiteDatabase): Cursor {
 			return db.query(
 					"Word",
-					arrayOf("_id", "wordtitle", "wordcontent"),
+					arrayOf("_id", "wordtitle", "wordcontent", "updatetime"),
 					null,
 					null,
 					null,
@@ -63,7 +63,7 @@ class DatabaseHandler {
 		fun getMemoData(db: SQLiteDatabase): Cursor {
 			return db.query(
 				"Memo",
-				arrayOf("_id", "fact", "abstract", "diversion"),
+				arrayOf("_id", "fact", "abstract", "diversion", "updatetime"),
 				null,
 				null,
 				null,

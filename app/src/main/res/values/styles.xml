@@ -16,5 +16,9 @@
     <style name="Content" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textColor">@color/colorSubBlack</item>
     </style>
+    
+    <style name="UpdateTime" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/colorSubBlack</item>
+    </style>
 
 </resources>

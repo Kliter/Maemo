@@ -28,8 +28,22 @@
 				android:layout_marginBottom="2dp"
 				android:layout_marginStart="4dp"
 				android:layout_marginEnd="4dp"
+				android:layout_toStartOf="@id/textview_update_time"
 				android:layout_toEndOf="@+id/appcompat_checkbox"
 				android:text="@string/HintFact"/>
+		
+		<TextView
+				android:id="@+id/textview_update_time"
+				style="@style/UpdateTime"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="2dp"
+				android:layout_marginStart="4dp"
+				android:layout_marginEnd="4dp"
+				android:layout_alignParentEnd="true"
+				android:layout_alignParentTop="true"
+				android:text="yyyy/MM/dd HH:mm:ss"/>
 		
 		<TextView
 				android:id="@+id/textview_memo_fact"

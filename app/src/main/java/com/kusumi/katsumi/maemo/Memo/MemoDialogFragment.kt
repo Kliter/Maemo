@@ -29,6 +29,9 @@ class MemoDialogFragment: DialogFragment() {
 		super.onCreate(savedInstanceState)
 
 		memo = arguments?.getSerializable(MEMO) as Memo?
+		Log.d("MemoDialogFragment", arguments?.containsKey(MEMO).toString())
+
+
 		if (memo != null) {
 			isFromEdit = true
 		}

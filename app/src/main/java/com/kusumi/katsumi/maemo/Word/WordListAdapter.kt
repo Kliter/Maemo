@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.kusumi.katsumi.maemo.Interface.ItemClickListener
 import com.kusumi.katsumi.maemo.R
 import com.kusumi.katsumi.maemo.Model.Word
+import com.kusumi.katsumi.maemo.Util.DateConverter
 import kotlinx.android.synthetic.main.snippet_wordlist_item.view.*
 
 class WordListAdapter(
@@ -47,6 +48,7 @@ class WordListAdapter(
 		holder.let {
 			it.textview_word_title.text = wordList[position].wordTitle
 			it.textview_word_content.text = wordList[position].wordContent
+			it.textview_update_time.text = DateConverter.convertLongToString(wordList[position].updateTime)
 			it.appcompat_checkbox.isChecked = wordList[position].isSelected
 			it.appcompat_checkbox.tag = position
 			it.appcompat_checkbox.setOnClickListener {

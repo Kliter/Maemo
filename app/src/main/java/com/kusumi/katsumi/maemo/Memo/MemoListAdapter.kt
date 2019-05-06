@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.kusumi.katsumi.maemo.Interface.ItemClickListener
 import com.kusumi.katsumi.maemo.Model.Memo
 import com.kusumi.katsumi.maemo.R
+import com.kusumi.katsumi.maemo.Util.DateConverter
 import kotlinx.android.synthetic.main.snippet_memolist_item.view.*
 
 class MemoListAdapter(
@@ -47,6 +48,7 @@ class MemoListAdapter(
 			it.textview_memo_fact.text = memoList[position].factText
 			it.textview_memo_abstract.text = memoList[position].abstractText
 			it.textview_memo_diversion.text = memoList[position].diversionText
+			it.textview_update_time.text = DateConverter.convertLongToString(memoList[position].updateTime)
 			it.appcompat_checkbox.tag = position
 			it.appcompat_checkbox.setOnClickListener {
 				val pos: Int = it.appcompat_checkbox.tag as Int

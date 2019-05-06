@@ -1,4 +1,4 @@
-package com.kusumi.katsumi.maemo.Dictionary
+package com.kusumi.katsumi.maemo.Word
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -8,11 +8,11 @@ import com.kusumi.katsumi.maemo.R
 import com.kusumi.katsumi.maemo.Model.Word
 import kotlinx.android.synthetic.main.snippet_wordcard_item.view.*
 
-class DictionaryAdapter(
+class WordListAdapter(
 	private val context: Context,
-	private val itemClickListener: DictionaryViewHolder.ItemClickListener,
+	private val itemClickListener: WordListViewHolder.ItemClickListener,
 	val wordList: MutableList<Word>
-): RecyclerView.Adapter<DictionaryViewHolder>() {
+): RecyclerView.Adapter<WordListViewHolder>() {
 
 	private var mRecyclerView: RecyclerView? = null
 
@@ -26,24 +26,24 @@ class DictionaryAdapter(
 		mRecyclerView = null
 	}
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DictionaryViewHolder {
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordListViewHolder {
 		val layoutInflater = LayoutInflater.from(context)
 		val view = layoutInflater.inflate(R.layout.snippet_wordcard_item, parent, false)
 
-		view.setOnClickListener { view
+		view.setOnClickListener {
 			mRecyclerView.let {
 				itemClickListener.onItemClick(view, it?.getChildAdapterPosition(view)!!)
 			}
 		}
 
-		return DictionaryViewHolder(view)
+		return WordListViewHolder(view)
 	}
 
 	override fun getItemCount(): Int {
 		return wordList.size
 	}
 
-	override fun onBindViewHolder(holder: DictionaryViewHolder, position: Int) {
+	override fun onBindViewHolder(holder: WordListViewHolder, position: Int) {
 		holder.let {
 			it.tvWordTitle.text = wordList[position].wordTitle
 			it.tvWordContent.text = wordList[position].wordContent

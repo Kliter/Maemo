@@ -1,10 +1,11 @@
-package com.kusumi.katsumi.maemo
+package com.kusumi.katsumi.maemo.Util
 
 import android.content.Intent
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import com.kusumi.katsumi.maemo.Dictionary.DictionaryActivity
+import com.kusumi.katsumi.maemo.Word.WordActivity
 import com.kusumi.katsumi.maemo.Memo.MainActivity
+import com.kusumi.katsumi.maemo.R
 
 class BottomNavigationViewManager {
 	companion object {
@@ -22,7 +23,7 @@ class BottomNavigationViewManager {
 						return@setOnNavigationItemSelectedListener true
 					}
 					R.id.action_dictionary -> {
-						intent.setClass(activity, DictionaryActivity::class.java)
+						intent.setClass(activity, WordActivity::class.java)
 						activity.startActivity(intent)
 						return@setOnNavigationItemSelectedListener true
 					}

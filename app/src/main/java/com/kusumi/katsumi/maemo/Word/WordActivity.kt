@@ -9,34 +9,33 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import com.kusumi.katsumi.maemo.*
 import com.kusumi.katsumi.maemo.DB.WordDBOpenHelper
 import com.kusumi.katsumi.maemo.Model.Word
-import com.kusumi.katsumi.maemo.Util.DatabaseHandler
+import com.kusumi.katsumi.maemo.DB.DatabaseHandler
+import com.kusumi.katsumi.maemo.Interface.ItemClickListener
 import com.kusumi.katsumi.maemo.Util.BottomNavigationViewManager
 import com.kusumi.katsumi.maemo.Util.ToolbarManager
-import kotlinx.android.synthetic.main.activity_dictionary.*
+import kotlinx.android.synthetic.main.activity_word.*
 import kotlinx.android.synthetic.main.snippet_toolbar.*
 
-class WordActivity: AppCompatActivity(),
-	WordListViewHolder.ItemClickListener {
+class WordActivity: AppCompatActivity(), ItemClickListener {
 
     // Bundle key
 	private val WORD = "WORD"
 
 	// DB Information
 	private lateinit var dbOpenHelper: WordDBOpenHelper
-	private lateinit var dictionaryReadableDB: SQLiteDatabase
-	private val TABLE_NAME = "Dictionary"
+	private lateinit var wordReadableDB: SQLiteDatabase
+	private val TABLE_NAME = "Word"
 	private val TABLE_EXISTS = "1"
 
 	// Word Information
-	private lateinit var wordList: MutableList<Word>
+	private lateinit var mWordList: MutableList<Word>
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_dictionary)
+		setContentView(R.layout.activity_word)
 
 		setupWidgets()
 	}
@@ -44,28 +43,28 @@ class WordActivity: AppCompatActivity(),
 	private fun setupWidgets() {
 		setupBottomNavigationView()
 		ToolbarManager.setupToolbar(this, appbar)
-		wordList = mutableListOf()
+		mWordList = mutableListOf()
 
-		fabInsertWord.setOnClickListener {
+		floating_action_button.setOnClickListener {
 			WordDialogFragment().show(supportFragmentManager, "launch")
 		}
 
 		dbOpenHelper = WordDBOpenHelper(this)
-		dictionaryReadableDB = dbOpenHelper.readableDatabase
+		wordReadableDB = dbOpenHelper.readableDatabase
 
-		val cursor: Cursor = DatabaseHandler.existsTable(dictionaryReadableDB, TABLE_NAME)
+		val cursor: Cursor = DatabaseHandler.existsTable(wordReadableDB, TABLE_NAME)
 		cursor.moveToFirst()
 		if (cursor.getString(0) == TABLE_EXISTS) {
 			setupWordList()
 		}
 
-		rvWordCardContainer.adapter = WordListAdapter(this, this, wordList)
-		rvWordCardContainer.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+		recycler_view.adapter = WordListAdapter(this, this, mWordList)
+		recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 	}
 
 	private fun setupBottomNavigationView() {
-		bottomNavigationView.selectedItemId = R.id.action_dictionary
-		BottomNavigationViewManager.setupBottomNavigationView(this, bottomNavigationView)
+		bottom_navigation_view.selectedItemId = R.id.action_dictionary
+		BottomNavigationViewManager.setupBottomNavigationView(this, bottom_navigation_view)
 	}
 
 	private fun setupWordList() {
@@ -76,22 +75,21 @@ class WordActivity: AppCompatActivity(),
 			word._id = cursor.getInt(0)
 			word.wordTitle = cursor.getString(1)
 			word.wordContent = cursor.getString(2)
-			wordList.add(word)
+			mWordList.add(word)
 			cursor.moveToNext()
 		}
 		cursor.close()
 	}
 
 	override fun onItemClick(view: View, position: Int) {
-		Toast.makeText(this, "Clicked $position", Toast.LENGTH_SHORT).show()
         val fragment = WordDialogFragment()
         val arguments = Bundle()
 		arguments.putSerializable(
 				WORD,
 			Word(
-				wordList[position]._id,
-				wordList[position].wordTitle,
-				wordList[position].wordContent
+				mWordList[position]._id,
+				mWordList[position].wordTitle,
+				mWordList[position].wordContent
 			)
 		)
         fragment.arguments = arguments
@@ -99,23 +97,21 @@ class WordActivity: AppCompatActivity(),
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-		menuInflater.inflate(R.menu.menu_dictionary, menu)
+		menuInflater.inflate(R.menu.menu_top, menu)
 		return super.onCreateOptionsMenu(menu)
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-		if (item?.itemId == R.id.actionDelete) {
+		if (item?.itemId == R.id.action_deletete) {
 			val deleteWordIdList = mutableListOf<Int>()
-			for (i in 0 until wordList.size) {
-				val word = (rvWordCardContainer.adapter as WordListAdapter).wordList[i]
+			for (i in 0 until mWordList.size) {
+				val word = (recycler_view.adapter as WordListAdapter).wordList[i]
 				if (word.isSelected) {
 					deleteWordIdList.add(word._id)
 				}
 			}
-			DatabaseHandler.deleteWord(
-				WordDBOpenHelper(
-					this
-				).writableDatabase, deleteWordIdList
+			DatabaseHandler.delete(
+				WordDBOpenHelper(this).writableDatabase, "Word", deleteWordIdList
 			)
 			reload()
 		}

@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Word.WordActivity"></activity>
+        <activity android:name=".Search.SearchActivity"></activity>
     </application>
 
 </manifest>

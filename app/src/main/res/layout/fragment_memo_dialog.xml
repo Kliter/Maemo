@@ -7,7 +7,7 @@
 	<android.support.design.widget.TextInputLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:id="@+id/tilMemoFact"
+			android:id="@+id/text_input_layout_memo_fact"
 			android:layout_margin="8dp"
 			app:errorEnabled="true"
 			app:counterEnabled="true"
@@ -17,7 +17,7 @@
 		<android.support.design.widget.TextInputEditText
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:id="@+id/tietMemoFact"
+				android:id="@+id/text_input_edit_text_memo_fact"
 				android:hint="@string/HintFact"
 				android:imeOptions="actionSend"
 				android:inputType="text"
@@ -28,8 +28,8 @@
 	<android.support.design.widget.TextInputLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:id="@+id/tilMemoAbstract"
-			android:layout_below="@id/tilMemoFact"
+			android:id="@+id/text_input_layout_abstract"
+			android:layout_below="@id/text_input_layout_memo_fact"
 			android:layout_margin="8dp"
 			app:errorEnabled="true"
 			app:counterEnabled="true"
@@ -39,7 +39,7 @@
 		<android.support.design.widget.TextInputEditText
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:id="@+id/tietMemoAbstract"
+				android:id="@+id/text_input_edit_memo_abstract"
 				android:hint="@string/HintAbstract"
 				android:imeOptions="actionSend"
 				android:inputType="text"
@@ -50,8 +50,8 @@
 	<android.support.design.widget.TextInputLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:id="@+id/tilMemoDiversion"
-			android:layout_below="@id/tilMemoAbstract"
+			android:id="@+id/text_input_layout_memo_diversion"
+			android:layout_below="@id/text_input_layout_abstract"
 			android:layout_margin="8dp"
 			app:errorEnabled="true"
 			app:counterEnabled="true"
@@ -61,7 +61,7 @@
 		<android.support.design.widget.TextInputEditText
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:id="@+id/tietMemoDiversion"
+				android:id="@+id/text_input_edit_text_memo_diversion"
 				android:hint="@string/HintDiversion"
 				android:imeOptions="actionSend"
 				android:inputType="text"

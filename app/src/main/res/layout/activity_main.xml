@@ -8,7 +8,7 @@
     <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/appBarLayout">
+            android:id="@+id/app_bar_layout">
         
         <include layout="@layout/snippet_toolbar"/>
     
@@ -18,29 +18,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_below="@id/appBarLayout">
+            android:layout_below="@id/app_bar_layout">
         
         <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/rvMemoCardContainer"
-                android:layout_above="@+id/bottomNavigationView"/>
+                android:id="@+id/recycler_view"
+                android:layout_above="@+id/bottom_navigation_view"/>
         
         <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fabInsertWord"
+                android:id="@+id/floating_action_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
                 android:layout_marginBottom="18dp"
                 android:src="@drawable/ic_action_add"
                 app:layout_anchorGravity="bottom|right|end"
-                android:layout_above="@+id/bottomNavigationView"
+                android:layout_above="@+id/bottom_navigation_view"
                 android:layout_alignParentEnd="true"/>
         
         <android.support.design.widget.BottomNavigationView
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:id="@+id/bottomNavigationView"
+                android:id="@+id/bottom_navigation_view"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="bottom"
                 app:menu="@menu/menu_bottom"/>

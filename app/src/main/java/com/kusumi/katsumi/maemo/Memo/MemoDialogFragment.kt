@@ -11,7 +11,7 @@ import android.view.View
 import android.widget.TextView
 import com.kusumi.katsumi.maemo.Model.Memo
 import com.kusumi.katsumi.maemo.R
-import com.kusumi.katsumi.maemo.Util.DatabaseHandler
+import com.kusumi.katsumi.maemo.DB.DatabaseHandler
 import com.kusumi.katsumi.maemo.Util.StringUtil
 import com.kusumi.katsumi.maemo.DB.WordDBOpenHelper
 import kotlinx.android.synthetic.main.fragment_memo_dialog.view.*
@@ -37,44 +37,44 @@ class MemoDialogFragment: DialogFragment() {
 
 		val inflater: LayoutInflater = activity?.layoutInflater!!
 		val view: View = inflater.inflate(R.layout.fragment_memo_dialog, null)
-		var positiveButtonText: String? = null
+		val positiveButtonText: String?
 		if (isFromEdit) {
 			positiveButtonText = getString(R.string.Edit)
-			view.tietMemoFact.setText(memo?.factText, TextView.BufferType.NORMAL)
-			view.tietMemoAbstract.setText(memo?.abstractText, TextView.BufferType.NORMAL)
-			view.tietMemoDiversion.setText(memo?.diversionText, TextView.BufferType.NORMAL)
+			view.text_input_edit_text_memo_fact.setText(memo?.factText, TextView.BufferType.NORMAL)
+			view.text_input_edit_memo_abstract.setText(memo?.abstractText, TextView.BufferType.NORMAL)
+			view.text_input_edit_text_memo_diversion.setText(memo?.diversionText, TextView.BufferType.NORMAL)
 		}
 		else {
 			positiveButtonText = getString(R.string.OK)
 		}
 
 		builder.setView(view).setPositiveButton(positiveButtonText) { _, _ ->
-			// Both of the texts are entered.
+			// All of the texts are entered.
 			if (StringUtil.isTextEnteredMemoDialog(
-					view.tietMemoFact.text.toString(),
-					view.tietMemoAbstract.text.toString(),
-					view.tietMemoDiversion.text.toString()
+					view.text_input_edit_text_memo_fact.text.toString(),
+					view.text_input_edit_memo_abstract.text.toString(),
+					view.text_input_edit_text_memo_diversion.text.toString()
 				)
 			) {
 				val helper = WordDBOpenHelper(context as Context)
 				val db: SQLiteDatabase = helper.writableDatabase
 
-				var isQuerySucceed = false
+				val isQuerySucceed: Boolean
 				if (isFromEdit) {
-					DatabaseHandler.updateMemo(
+					isQuerySucceed = DatabaseHandler.updateMemo(
 						db,
 						memo?._id!!,
-						view.tietMemoFact.text.toString(),
-						view.tietMemoAbstract.text.toString(),
-						view.tietMemoDiversion.text.toString()
+						view.text_input_edit_text_memo_fact.text.toString(),
+						view.text_input_edit_memo_abstract.text.toString(),
+						view.text_input_edit_text_memo_diversion.text.toString()
 					)
 				}
 				else {
 					isQuerySucceed = DatabaseHandler.insertMemo(
 						db,
-						view.tietMemoFact.text.toString(),
-						view.tietMemoAbstract.text.toString(),
-						view.tietMemoDiversion.text.toString()
+						view.text_input_edit_text_memo_fact.text.toString(),
+						view.text_input_edit_memo_abstract.text.toString(),
+						view.text_input_edit_text_memo_diversion.text.toString()
 					)
 				}
 

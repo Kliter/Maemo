@@ -5,13 +5,8 @@ import android.view.View
 import kotlinx.android.synthetic.main.snippet_memolist_item.view.*
 
 class MemoListViewHolder(view: View): RecyclerView.ViewHolder(view) {
-
-	interface ItemClickListener {
-		fun onItemClick(view: View, position: Int)
-	}
-
-	var accbMemo = view.accbMemo!!
-	var tvFact = view.tvFact!!
-	var tvAbstract = view.tvAbstract!!
-	var tvDiversion = view.tvDiversion!!
+	var appcompat_checkbox = view.appcompat_checkbox!!
+	var textview_memo_fact = view.textview_memo_fact!!
+	var textview_memo_abstract = view.textview_memo_abstract!!
+	var textview_memo_diversion = view.textview_memo_diversion!!
 }

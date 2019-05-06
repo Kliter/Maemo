@@ -4,13 +4,14 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.kusumi.katsumi.maemo.Interface.ItemClickListener
 import com.kusumi.katsumi.maemo.R
 import com.kusumi.katsumi.maemo.Model.Word
-import kotlinx.android.synthetic.main.snippet_wordcard_item.view.*
+import kotlinx.android.synthetic.main.snippet_wordlist_item.view.*
 
 class WordListAdapter(
 	private val context: Context,
-	private val itemClickListener: WordListViewHolder.ItemClickListener,
+	private val itemClickListener: ItemClickListener,
 	val wordList: MutableList<Word>
 ): RecyclerView.Adapter<WordListViewHolder>() {
 
@@ -28,14 +29,13 @@ class WordListAdapter(
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordListViewHolder {
 		val layoutInflater = LayoutInflater.from(context)
-		val view = layoutInflater.inflate(R.layout.snippet_wordcard_item, parent, false)
+		val view = layoutInflater.inflate(R.layout.snippet_wordlist_item, parent, false)
 
 		view.setOnClickListener {
 			mRecyclerView.let {
 				itemClickListener.onItemClick(view, it?.getChildAdapterPosition(view)!!)
 			}
 		}
-
 		return WordListViewHolder(view)
 	}
 
@@ -45,12 +45,12 @@ class WordListAdapter(
 
 	override fun onBindViewHolder(holder: WordListViewHolder, position: Int) {
 		holder.let {
-			it.tvWordTitle.text = wordList[position].wordTitle
-			it.tvWordContent.text = wordList[position].wordContent
-			it.accbWord.isChecked = wordList[position].isSelected
-			it.accbWord.tag = position
-			it.accbWord.setOnClickListener {
-				val pos: Int = it.accbWord.tag as Int
+			it.textview_word_title.text = wordList[position].wordTitle
+			it.textview_word_content.text = wordList[position].wordContent
+			it.appcompat_checkbox.isChecked = wordList[position].isSelected
+			it.appcompat_checkbox.tag = position
+			it.appcompat_checkbox.setOnClickListener {
+				val pos: Int = it.appcompat_checkbox.tag as Int
 				wordList[pos].isSelected = !wordList[pos].isSelected
 			}
 		}

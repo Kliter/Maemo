@@ -4,14 +4,15 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.kusumi.katsumi.maemo.Interface.ItemClickListener
 import com.kusumi.katsumi.maemo.Model.Memo
 import com.kusumi.katsumi.maemo.R
 import kotlinx.android.synthetic.main.snippet_memolist_item.view.*
 
 class MemoListAdapter(
 	private val context: Context,
-	private val itemClickListener: MemoListViewHolder.ItemClickListener,
-	private val memoList: MutableList<Memo>
+	private val itemClickListener: ItemClickListener,
+	val memoList: MutableList<Memo>
 ): RecyclerView.Adapter<MemoListViewHolder>() {
 
 	private var mRecyclerView: RecyclerView? = null
@@ -43,12 +44,12 @@ class MemoListAdapter(
 
 	override fun onBindViewHolder(holder: MemoListViewHolder, position: Int) {
 		holder.let{
-			it.tvFact.text = memoList[position].factText
-			it.tvAbstract.text = memoList[position].abstractText
-			it.tvDiversion.text = memoList[position].diversionText
-			it.accbMemo.tag = position
-			it.accbMemo.setOnClickListener {
-				val pos: Int = it.accbMemo.tag as Int
+			it.textview_memo_fact.text = memoList[position].factText
+			it.textview_memo_abstract.text = memoList[position].abstractText
+			it.textview_memo_diversion.text = memoList[position].diversionText
+			it.appcompat_checkbox.tag = position
+			it.appcompat_checkbox.setOnClickListener {
+				val pos: Int = it.appcompat_checkbox.tag as Int
 				memoList[pos].isSelected = !memoList[pos].isSelected
 			}
 		}

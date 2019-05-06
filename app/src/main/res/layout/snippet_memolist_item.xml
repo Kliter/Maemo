@@ -13,14 +13,14 @@
 			android:layout_height="wrap_content">
 		
 		<android.support.v7.widget.AppCompatCheckBox
-				android:id="@+id/accbMemo"
+				android:id="@+id/appcompat_checkbox"
 				android:layout_width="48dp"
 				android:layout_height="48dp"
 				android:layout_centerVertical="true"
 				android:layout_margin="4dp"/>
 		
 		<TextView
-				android:id="@+id/tvFact"
+				android:id="@+id/textview_memo_fact"
 				style="@style/WordTitle"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -28,31 +28,31 @@
 				android:layout_marginBottom="4dp"
 				android:layout_marginStart="4dp"
 				android:layout_marginEnd="4dp"
-				android:layout_toEndOf="@+id/accbMemo"/>
+				android:layout_toEndOf="@+id/appcompat_checkbox"/>
 		
 		<TextView
-				android:id="@+id/tvAbstract"
+				android:id="@+id/textview_memo_abstract"
 				style="@style/WordContent"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/tvFact"
+				android:layout_below="@+id/textview_memo_fact"
 				android:layout_marginTop="4dp"
 				android:layout_marginBottom="4dp"
 				android:layout_marginStart="4dp"
 				android:layout_marginEnd="4dp"
-				android:layout_toEndOf="@+id/accbMemo"/>
+				android:layout_toEndOf="@+id/appcompat_checkbox"/>
 		
 		<TextView
-				android:id="@+id/tvDiversion"
+				android:id="@+id/textview_memo_diversion"
 				style="@style/WordContent"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/tvAbstract"
+				android:layout_below="@+id/textview_memo_abstract"
 				android:layout_marginTop="4dp"
 				android:layout_marginBottom="16dp"
 				android:layout_marginStart="4dp"
 				android:layout_marginEnd="4dp"
-				android:layout_toEndOf="@+id/accbMemo"/>
+				android:layout_toEndOf="@+id/appcompat_checkbox"/>
 	
 	</RelativeLayout>
 </android.support.v7.widget.CardView>

@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import com.kusumi.katsumi.maemo.DB.WordDBOpenHelper
-import com.kusumi.katsumi.maemo.Util.DatabaseHandler
+import com.kusumi.katsumi.maemo.DB.DatabaseHandler
 import com.kusumi.katsumi.maemo.Model.Word
 import com.kusumi.katsumi.maemo.R
 import com.kusumi.katsumi.maemo.Util.StringUtil
@@ -40,8 +40,8 @@ class WordDialogFragment: DialogFragment() {
         val positiveButtonText: String?
         if (isFromEdit) {
             positiveButtonText = getString(R.string.Edit)
-            view.tietWordTitle.setText(word?.wordTitle, TextView.BufferType.NORMAL)
-            view.tietWordContent.setText(word?.wordContent, TextView.BufferType.NORMAL)
+            view.text_input_edit_text_word_title.setText(word?.wordTitle, TextView.BufferType.NORMAL)
+            view.text_input_edit_text_word_content.setText(word?.wordContent, TextView.BufferType.NORMAL)
         }
         else {
             positiveButtonText = getString(R.string.OK)
@@ -51,8 +51,8 @@ class WordDialogFragment: DialogFragment() {
                 .setPositiveButton(positiveButtonText) { _, _ ->
                     // Both of the texts are entered.
                     if (StringUtil.isTextEnteredWordDialog(
-                            view.tietWordTitle.text.toString(),
-                            view.tietWordContent.text.toString()
+                            view.text_input_edit_text_word_title.text.toString(),
+                            view.text_input_edit_text_word_content.text.toString()
                         )
                     ) {
                         val helper = WordDBOpenHelper(context as Context)
@@ -62,15 +62,15 @@ class WordDialogFragment: DialogFragment() {
                            isQuerySucceed = DatabaseHandler.updateWord(
                                db,
                                word?._id!!,
-                               view.tietWordTitle.text.toString(),
-                               view.tietWordContent.text.toString()
+                               view.text_input_edit_text_word_title.text.toString(),
+                               view.text_input_edit_text_word_content.text.toString()
                            )
                         }
                         else {
                             isQuerySucceed = DatabaseHandler.insertWord(
                                 db,
-                                view.tietWordTitle.text.toString(),
-                                view.tietWordContent.text.toString()
+                                view.text_input_edit_text_word_title.text.toString(),
+                                view.text_input_edit_text_word_content.text.toString()
                             )
                         }
                         if (isQuerySucceed) {

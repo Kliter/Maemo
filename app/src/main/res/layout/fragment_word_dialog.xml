@@ -7,7 +7,7 @@
 	<android.support.design.widget.TextInputLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/tilWordTitle"
+		android:id="@+id/text_input_layout_word_title"
 		android:layout_margin="8dp"
 		app:errorEnabled="true"
 		app:counterEnabled="true"
@@ -17,7 +17,7 @@
 		<android.support.design.widget.TextInputEditText
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:id="@+id/tietWordTitle"
+			android:id="@+id/text_input_edit_text_word_title"
 			android:hint="@string/WordTitle"
 			android:imeOptions="actionSend"
 			android:inputType="text"
@@ -28,8 +28,8 @@
 	<android.support.design.widget.TextInputLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/tilTextContent"
-		android:layout_below="@id/tilWordTitle"
+		android:id="@+id/text_input_layout_word_content"
+		android:layout_below="@id/text_input_layout_word_title"
 		android:layout_margin="8dp"
 		app:errorEnabled="true"
 		app:counterEnabled="true"
@@ -39,7 +39,7 @@
 		<android.support.design.widget.TextInputEditText
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:id="@+id/tietWordContent"
+			android:id="@+id/text_input_edit_text_word_content"
 			android:hint="@string/WordContent"
 			android:imeOptions="actionSend"
 			android:inputType="text"

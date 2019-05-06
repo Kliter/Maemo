@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:id="@+id/main_content"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="true"
+		tools:context="com.kusumi.katsumi.maemo.Search.SearchActivity">
+	
+	<android.support.design.widget.AppBarLayout
+			android:id="@+id/appbar_layout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:elevation="4dp">
+		
+		<FrameLayout
+				android:id="@+id/frame_layout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+			
+			<include layout="@layout/snippet_toolbar"/>
+			
+			<com.miguelcatalan.materialsearchview.MaterialSearchView
+					android:id="@+id/material_search_view"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"/>
+		
+		</FrameLayout>
+		
+		<android.support.design.widget.TabLayout
+				android:id="@+id/tab_layout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
+	
+	</android.support.design.widget.AppBarLayout>
+	
+	<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+		
+		<android.support.v4.view.ViewPager
+				android:id="@+id/viewpager"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_above="@+id/bottom_navigation_view"/>
+		
+		<android.support.design.widget.BottomNavigationView
+				android:layout_width="match_parent"
+				android:layout_height="?attr/actionBarSize"
+				android:id="@+id/bottom_navigation_view"
+				android:layout_alignParentBottom="true"
+				android:layout_gravity="bottom"
+				app:menu="@menu/menu_bottom"/>
+		
+	</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

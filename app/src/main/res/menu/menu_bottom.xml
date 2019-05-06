@@ -3,18 +3,18 @@
     <item
         android:id="@+id/action_home"
         android:icon="@drawable/ic_action_home"
-        android:title="@string/action_home"/>
+        android:title="@string/ActionHome"/>
     
     <item android:id="@+id/action_dictionary"
           android:icon="@drawable/ic_action_dictionary"
-          android:title="@string/action_dictionary"/>
+          android:title="@string/ActionDictionary"/>
     
     <item android:id="@+id/action_search"
           android:icon="@drawable/ic_action_search"
-          android:title="@string/action_search"/>
+          android:title="@string/ActionSearch"/>
     
     <item android:id="@+id/action_settings"
           android:icon="@drawable/ic_action_settings"
-          android:title="@string/action_settings"/>
+          android:title="@string/ActionSettings"/>
 
 </menu>

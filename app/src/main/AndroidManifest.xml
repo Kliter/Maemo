@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Dictionary.DictionaryActivity"></activity>
+        <activity android:name=".Word.WordActivity"></activity>
+        <activity android:name=".Search.SearchActivity"></activity>
     </application>
 
 </manifest>

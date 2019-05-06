@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
@@ -14,11 +15,12 @@ import com.kusumi.katsumi.maemo.R
 import com.kusumi.katsumi.maemo.DB.DatabaseHandler
 import com.kusumi.katsumi.maemo.Util.StringUtil
 import com.kusumi.katsumi.maemo.DB.WordDBOpenHelper
+import com.kusumi.katsumi.maemo.Interface.PositiveButtonClickListener
+import com.kusumi.katsumi.maemo.Util.Constants.Companion.MEMO
 import kotlinx.android.synthetic.main.fragment_memo_dialog.view.*
 
 class MemoDialogFragment: DialogFragment() {
 
-	private val MEMO = "MEMO"
 	private var memo: Memo? = null
 
 	private var isFromEdit: Boolean = false
@@ -79,7 +81,7 @@ class MemoDialogFragment: DialogFragment() {
 				}
 
 				if (isQuerySucceed) {
-					(activity as MainActivity).reload()
+					(activity as PositiveButtonClickListener).onPositiveButtonClick()
 				}
 			}
 		}
@@ -89,4 +91,6 @@ class MemoDialogFragment: DialogFragment() {
 
 		return builder.create()
 	}
+
+
 }

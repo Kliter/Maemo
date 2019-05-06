@@ -3,6 +3,8 @@ package com.kusumi.katsumi.maemo.Search
 import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
+import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -19,20 +21,25 @@ import com.kusumi.katsumi.maemo.DB.DatabaseHandler
 import com.kusumi.katsumi.maemo.DB.MemoDBOpenHelper
 import com.kusumi.katsumi.maemo.DB.WordDBOpenHelper
 import com.kusumi.katsumi.maemo.Interface.ItemClickListener
+import com.kusumi.katsumi.maemo.Interface.PositiveButtonClickListener
+import com.kusumi.katsumi.maemo.Memo.MemoDialogFragment
 import com.kusumi.katsumi.maemo.Memo.MemoListAdapter
 import com.kusumi.katsumi.maemo.Model.Memo
 import com.kusumi.katsumi.maemo.Model.Word
 import com.kusumi.katsumi.maemo.Util.Constants
+import com.kusumi.katsumi.maemo.Util.Constants.Companion.MEMO
 import com.kusumi.katsumi.maemo.Util.Constants.Companion.MEMO_SECTION_NUM
+import com.kusumi.katsumi.maemo.Util.Constants.Companion.WORD
 import com.kusumi.katsumi.maemo.Util.Constants.Companion.WORD_SECTION_NUM
 import com.kusumi.katsumi.maemo.Util.ToolbarManager
+import com.kusumi.katsumi.maemo.Word.WordDialogFragment
 import com.kusumi.katsumi.maemo.Word.WordListAdapter
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.fragment_search_content.*
 import kotlinx.android.synthetic.main.snippet_toolbar.*
 
-class SearchActivity: AppCompatActivity(), ItemClickListener {
+class SearchActivity: AppCompatActivity(), ItemClickListener, PositiveButtonClickListener {
 
 	private lateinit var mDBOpenHelper: BaseDBOpenHelper
 
@@ -179,6 +186,35 @@ class SearchActivity: AppCompatActivity(), ItemClickListener {
 
 	override fun onItemClick(view: View, position: Int) {
 		Toast.makeText(this, "Clicked $position", Toast.LENGTH_SHORT).show()
+
+		val arguments = Bundle()
+		if (mCurrentSelectedTabNum == MEMO_SECTION_NUM) {
+			val fragment = MemoDialogFragment()
+			arguments.putSerializable(
+				MEMO,
+				Memo(
+					mMemoList!![position]._id,
+					mMemoList!![position].factText,
+					mMemoList!![position].abstractText,
+					mMemoList!![position].diversionText
+				)
+			)
+			fragment.arguments = arguments
+			fragment.show(supportFragmentManager, "launch")
+		}
+		else if (mCurrentSelectedTabNum == WORD_SECTION_NUM) {
+			val fragment = WordDialogFragment()
+			arguments.putSerializable(
+				WORD,
+				Word(
+					mWordList!![position]._id,
+					mWordList!![position].wordTitle,
+					mWordList!![position].wordContent
+				)
+			)
+			fragment.arguments = arguments
+			fragment.show(supportFragmentManager, "launch")
+		}
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -209,7 +245,9 @@ class SearchActivity: AppCompatActivity(), ItemClickListener {
 				)
 			}
 			initListData()
-			getQueriedData(mRecentUsedQuery!!)
+			if (mRecentUsedQuery != null) {
+				getQueriedData(mRecentUsedQuery!!)
+			}
 			setupRecyclerView()
 		}
 		return super.onOptionsItemSelected(item)
@@ -218,5 +256,16 @@ class SearchActivity: AppCompatActivity(), ItemClickListener {
 	override fun onRestart() {
 		super.onRestart()
 		setupWidgets()
+	}
+
+	override fun onPositiveButtonClick() {
+		initListData()
+		getQueriedData(mRecentUsedQuery!!)
+		setupRecyclerView()
+	}
+
+	override fun onSupportNavigateUp(): Boolean {
+		onBackPressed()
+		return true
 	}
 }

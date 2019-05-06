@@ -16,10 +16,11 @@ import com.kusumi.katsumi.maemo.R
 import com.kusumi.katsumi.maemo.Util.ToolbarManager
 import com.kusumi.katsumi.maemo.DB.DatabaseHandler
 import com.kusumi.katsumi.maemo.Interface.ItemClickListener
+import com.kusumi.katsumi.maemo.Interface.PositiveButtonClickListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.snippet_toolbar.*
 
-class MainActivity : AppCompatActivity(), ItemClickListener {
+class MainActivity : AppCompatActivity(), ItemClickListener, PositiveButtonClickListener {
 
     // Bundle key
     private val MEMO = "MEMO"
@@ -118,7 +119,7 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
         return super.onOptionsItemSelected(item)
     }
 
-    fun reload() {
+    private fun reload() {
         val intent = intent
         overridePendingTransition(0, 0)
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -131,5 +132,14 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
     override fun onRestart() {
         super.onRestart()
         setupWidget()
+    }
+
+    override fun onPositiveButtonClick() {
+        reload()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

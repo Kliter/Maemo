@@ -20,35 +20,74 @@
 				android:layout_margin="4dp"/>
 		
 		<TextView
-				android:id="@+id/textview_memo_fact"
-				style="@style/WordTitle"
+				android:id="@+id/textview_memo_fact_label"
+				style="@style/Title"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="16dp"
+				android:layout_marginBottom="2dp"
+				android:layout_marginStart="4dp"
+				android:layout_marginEnd="4dp"
+				android:layout_toEndOf="@+id/appcompat_checkbox"
+				android:text="@string/HintFact"/>
+		
+		<TextView
+				android:id="@+id/textview_memo_fact"
+				style="@style/Content"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="2dp"
 				android:layout_marginBottom="4dp"
 				android:layout_marginStart="4dp"
 				android:layout_marginEnd="4dp"
+				android:layout_below="@+id/textview_memo_fact_label"
 				android:layout_toEndOf="@+id/appcompat_checkbox"/>
+		
+		<TextView
+				android:id="@+id/textview_memo_abstract_label"
+				style="@style/Title"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:layout_marginBottom="2dp"
+				android:layout_marginStart="4dp"
+				android:layout_marginEnd="4dp"
+				android:layout_toEndOf="@+id/appcompat_checkbox"
+				android:layout_below="@id/textview_memo_fact"
+				android:text="@string/HintAbstract"/>
 		
 		<TextView
 				android:id="@+id/textview_memo_abstract"
-				style="@style/WordContent"
+				style="@style/Content"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/textview_memo_fact"
-				android:layout_marginTop="4dp"
+				android:layout_below="@+id/textview_memo_abstract_label"
+				android:layout_marginTop="2dp"
 				android:layout_marginBottom="4dp"
 				android:layout_marginStart="4dp"
 				android:layout_marginEnd="4dp"
 				android:layout_toEndOf="@+id/appcompat_checkbox"/>
 		
 		<TextView
-				android:id="@+id/textview_memo_diversion"
-				style="@style/WordContent"
+				android:id="@+id/textview_memo_diversion_label"
+				style="@style/Title"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/textview_memo_abstract"
-				android:layout_marginTop="4dp"
+				android:layout_marginTop="16dp"
+				android:layout_marginBottom="2dp"
+				android:layout_marginStart="4dp"
+				android:layout_marginEnd="4dp"
+				android:layout_toEndOf="@+id/appcompat_checkbox"
+				android:layout_below="@id/textview_memo_abstract"
+				android:text="@string/HintDiversion"/>
+		
+		<TextView
+				android:id="@+id/textview_memo_diversion"
+				style="@style/Content"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/textview_memo_diversion_label"
+				android:layout_marginTop="2dp"
 				android:layout_marginBottom="16dp"
 				android:layout_marginStart="4dp"
 				android:layout_marginEnd="4dp"

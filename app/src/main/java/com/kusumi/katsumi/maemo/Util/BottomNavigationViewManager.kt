@@ -23,7 +23,7 @@ class BottomNavigationViewManager {
 						activity.startActivity(intent)
 						return@setOnNavigationItemSelectedListener true
 					}
-					R.id.action_dictionary -> {
+					R.id.action_word -> {
 						intent.setClass(activity, WordActivity::class.java)
 						activity.startActivity(intent)
 						return@setOnNavigationItemSelectedListener true
@@ -31,9 +31,6 @@ class BottomNavigationViewManager {
 					R.id.action_search -> {
 						intent.setClass(activity, SearchActivity::class.java)
 						activity.startActivity(intent)
-						return@setOnNavigationItemSelectedListener true
-					}
-					R.id.action_settings -> {
 						return@setOnNavigationItemSelectedListener true
 					}
 				}

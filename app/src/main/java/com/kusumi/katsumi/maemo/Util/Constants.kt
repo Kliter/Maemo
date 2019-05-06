@@ -11,9 +11,9 @@ class Constants {
 		const val MEMO_DROP_ENTRY = "DROP TABLE IF EXISTS Memo"
 
 		// Page Info
-		const val MEMO = "Memo"
+		const val MEMO = "MEMO"
 		const val MEMO_SECTION_NUM = 0
-		const val WORD= "Word"
+		const val WORD= "WORD"
 		const val WORD_SECTION_NUM = 1
 	}
 }

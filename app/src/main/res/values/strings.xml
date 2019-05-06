@@ -8,14 +8,14 @@
     <string name="HintDiversion">転用</string>
     <string name="OK">OK</string>
     <string name="Close">閉じる</string>
-    <string name="WordTitle">単語</string>
+    <string name="WordTitle">刺さった言葉</string>
     <string name="WordContent">意味</string>
     <string name="Edit">編集</string>
     
     // Action
     <string name="ActionHome">Home</string>
     <string name="ActionSearch">Search</string>
-    <string name="ActionDictionary">Dictionary</string>
+    <string name="ActionWord">Word</string>
     <string name="ActionSettings">Settings</string>
     <string name="ActionDelete">Delete</string>
 </resources>

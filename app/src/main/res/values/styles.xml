@@ -8,20 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     
-    <style name="MemoTitle" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="android:background">@color/colorTransparent</item>
-    </style>
-    
-    <style name="MemoContent" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:background">@color/colorTransparent</item>
-    </style>
-
-    <style name="WordTitle" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:textColor">@color/colorBlack</item>
+    <style name="Title" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="WordContent" parent="TextAppearance.MaterialComponents.Body1">
+    <style name="Content" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textColor">@color/colorSubBlack</item>
     </style>
 

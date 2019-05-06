@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.TextView
 import com.kusumi.katsumi.maemo.DB.WordDBOpenHelper
 import com.kusumi.katsumi.maemo.DB.DatabaseHandler
+import com.kusumi.katsumi.maemo.Interface.PositiveButtonClickListener
 import com.kusumi.katsumi.maemo.Model.Word
 import com.kusumi.katsumi.maemo.R
 import com.kusumi.katsumi.maemo.Util.StringUtil
@@ -74,7 +75,7 @@ class WordDialogFragment: DialogFragment() {
                             )
                         }
                         if (isQuerySucceed) {
-                            (activity as WordActivity).reload()
+                            (activity as PositiveButtonClickListener).onPositiveButtonClick()
                         }
                     }
                 }

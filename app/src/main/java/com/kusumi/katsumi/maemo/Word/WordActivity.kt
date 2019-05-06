@@ -14,12 +14,13 @@ import com.kusumi.katsumi.maemo.DB.WordDBOpenHelper
 import com.kusumi.katsumi.maemo.Model.Word
 import com.kusumi.katsumi.maemo.DB.DatabaseHandler
 import com.kusumi.katsumi.maemo.Interface.ItemClickListener
+import com.kusumi.katsumi.maemo.Interface.PositiveButtonClickListener
 import com.kusumi.katsumi.maemo.Util.BottomNavigationViewManager
 import com.kusumi.katsumi.maemo.Util.ToolbarManager
 import kotlinx.android.synthetic.main.activity_word.*
 import kotlinx.android.synthetic.main.snippet_toolbar.*
 
-class WordActivity: AppCompatActivity(), ItemClickListener {
+class WordActivity: AppCompatActivity(), ItemClickListener, PositiveButtonClickListener {
 
     // Bundle key
 	private val WORD = "WORD"
@@ -63,7 +64,7 @@ class WordActivity: AppCompatActivity(), ItemClickListener {
 	}
 
 	private fun setupBottomNavigationView() {
-		bottom_navigation_view.selectedItemId = R.id.action_dictionary
+		bottom_navigation_view.selectedItemId = R.id.action_word
 		BottomNavigationViewManager.setupBottomNavigationView(this, bottom_navigation_view)
 	}
 
@@ -118,7 +119,7 @@ class WordActivity: AppCompatActivity(), ItemClickListener {
 		return super.onOptionsItemSelected(item)
 	}
 
-	fun reload() {
+	private fun reload() {
 		val intent = intent
 		overridePendingTransition(0, 0)
 		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -131,5 +132,14 @@ class WordActivity: AppCompatActivity(), ItemClickListener {
 	override fun onRestart() {
 		super.onRestart()
 		setupWidgets()
+	}
+
+	override fun onPositiveButtonClick() {
+		reload()
+	}
+
+	override fun onSupportNavigateUp(): Boolean {
+		onBackPressed()
+		return true
 	}
 }

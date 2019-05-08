@@ -20,16 +20,19 @@ class BottomNavigationViewManager {
 				when (it.itemId) {
 					R.id.action_home -> {
 						intent.setClass(activity, MainActivity::class.java)
+						intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
 						activity.startActivity(intent)
 						return@setOnNavigationItemSelectedListener true
 					}
 					R.id.action_word -> {
 						intent.setClass(activity, WordActivity::class.java)
+						intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
 						activity.startActivity(intent)
 						return@setOnNavigationItemSelectedListener true
 					}
 					R.id.action_search -> {
 						intent.setClass(activity, SearchActivity::class.java)
+						intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
 						activity.startActivity(intent)
 						return@setOnNavigationItemSelectedListener true
 					}

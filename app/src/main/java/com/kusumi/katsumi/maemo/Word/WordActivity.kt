@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -132,15 +133,17 @@ class WordActivity: AppCompatActivity(), ItemClickListener, PositiveButtonClickL
 
 	override fun onRestart() {
 		super.onRestart()
-		setupWidgets()
+		Log.d("WordActivity", "onRestart")
+	}
+
+	override fun onBackPressed() {
+		super.onBackPressed()
+		Log.d("MainActivity", "onBackPressed")
 	}
 
 	override fun onPositiveButtonClick() {
 		reload()
 	}
 
-	override fun onSupportNavigateUp(): Boolean {
-		onBackPressed()
-		return true
-	}
+
 }

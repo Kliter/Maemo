@@ -8,11 +8,8 @@ class ToolbarManager {
 	companion object {
 		fun setupToolbar(activity: AppCompatActivity, toolbar: Toolbar) {
 			activity.setSupportActionBar(toolbar)
-			activity.supportActionBar?.let {
-				it.setDisplayHomeAsUpEnabled(true)
-				it.setHomeButtonEnabled(true)
-			}
+			activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+			activity.supportActionBar?.setHomeButtonEnabled(true)
 		}
 	}
-
 }

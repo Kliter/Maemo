@@ -19,6 +19,7 @@ open class BaseDBOpenHelper(context: Context):
 		}
 	}
 
+	// This method will be called only the first time.
 	override fun onCreate(db: SQLiteDatabase) {
 		DatabaseHandler.initDB(db)
 	}

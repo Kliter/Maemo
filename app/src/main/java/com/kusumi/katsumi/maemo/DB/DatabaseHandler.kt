@@ -21,31 +21,12 @@ class DatabaseHandler {
 			db.execSQL(MEMO_DROP_ENTRY)
 		}
 
-		fun getWordData(db: SQLiteDatabase): Cursor {
-			return db.query(
-					"Word",
-					arrayOf("_id", "wordtitle", "wordcontent", "updatetime"),
-					null,
-					null,
-					null,
-					null,
-					"_id desc"
-			)
-		}
-
-		fun updateWord(db: SQLiteDatabase, id: Int, wordTitle: String, wordContent: String): Boolean {
-			return WordDBOpenHelper.update(db, id, wordTitle, wordContent)
-		}
-
-		fun insertWord(db: SQLiteDatabase, wordTitle: String, wordContent: String): Boolean {
-			return WordDBOpenHelper.insert(db, wordTitle, wordContent)
-		}
-
-		fun delete(db: SQLiteDatabase, tableName: String, deleteWordIdList: MutableList<Int>) {
+		// This method will be used by both tables.
+		fun delete(db: SQLiteDatabase, tableName: String, deleteIdList: MutableList<Int>) {
 			val deleteTerms = StringBuilder("_id in (")
-			for (i in 0 until deleteWordIdList.size) {
-				deleteTerms.append(deleteWordIdList[i])
-				if (i != deleteWordIdList.size -1) {
+			for (i in 0 until deleteIdList.size) {
+				deleteTerms.append(deleteIdList[i])
+				if (i != deleteIdList.size -1) {
 					deleteTerms.append(" , ")
 				}
 			}
@@ -60,6 +41,36 @@ class DatabaseHandler {
 			)
 		}
 
+		// Get all word data.
+		fun getWordData(db: SQLiteDatabase): Cursor {
+			return db.query(
+					"Word",
+					arrayOf("_id", "wordtitle", "wordcontent", "updatetime"),
+					null,
+					null,
+					null,
+					null,
+					"_id desc"
+			)
+		}
+
+		// This method will get queried word data.
+		fun getWordData(db: SQLiteDatabase, query: String): Cursor {
+			return db.rawQuery(
+				"SELECT * FROM Word WHERE wordtitle LIKE '%$query%' OR wordcontent LIKE '%$query%'",
+				null
+			)
+		}
+
+		fun updateWord(db: SQLiteDatabase, id: Int, wordTitle: String, wordContent: String): Boolean {
+			return WordDBOpenHelper.update(db, id, wordTitle, wordContent)
+		}
+
+		fun insertWord(db: SQLiteDatabase, wordTitle: String, wordContent: String): Boolean {
+			return WordDBOpenHelper.insert(db, wordTitle, wordContent)
+		}
+
+		// Get all memo data.
 		fun getMemoData(db: SQLiteDatabase): Cursor {
 			return db.query(
 				"Memo",
@@ -72,16 +83,10 @@ class DatabaseHandler {
 			)
 		}
 
+		// Get queried memo data.
 		fun getMemoData(db: SQLiteDatabase, query: String): Cursor {
 			return db.rawQuery(
 				"SELECT * FROM Memo WHERE fact LIKE '%$query%' OR abstract LIKE '%$query%' OR diversion LIKE '%$query%'",
-				null
-			)
-		}
-
-		fun getWordData(db: SQLiteDatabase, query: String): Cursor {
-			return db.rawQuery(
-				"SELECT * FROM Word WHERE wordtitle LIKE '%$query%' OR wordcontent LIKE '%$query%'",
 				null
 			)
 		}

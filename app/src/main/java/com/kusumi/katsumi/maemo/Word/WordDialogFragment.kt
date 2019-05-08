@@ -14,7 +14,6 @@ import com.kusumi.katsumi.maemo.DB.DatabaseHandler
 import com.kusumi.katsumi.maemo.Interface.PositiveButtonClickListener
 import com.kusumi.katsumi.maemo.Model.Word
 import com.kusumi.katsumi.maemo.R
-import com.kusumi.katsumi.maemo.Util.StringUtil
 import kotlinx.android.synthetic.main.fragment_word_dialog.view.*
 
 class WordDialogFragment: DialogFragment() {
@@ -51,11 +50,8 @@ class WordDialogFragment: DialogFragment() {
         builder.setView(view)
                 .setPositiveButton(positiveButtonText) { _, _ ->
                     // Both of the texts are entered.
-                    if (StringUtil.isTextEnteredWordDialog(
-                            view.text_input_edit_text_word_title.text.toString(),
-                            view.text_input_edit_text_word_content.text.toString()
-                        )
-                    ) {
+                    if (view.text_input_edit_text_word_title.text != null
+                        && view.text_input_edit_text_word_title.text.toString() != "") {
                         val helper = WordDBOpenHelper(context as Context)
                         val db: SQLiteDatabase = helper.writableDatabase
                         val isQuerySucceed: Boolean

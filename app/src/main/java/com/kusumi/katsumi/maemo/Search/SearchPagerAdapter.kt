@@ -3,7 +3,6 @@ package com.kusumi.katsumi.maemo.Search
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.kusumi.katsumi.maemo.Util.Constants.*
 import com.kusumi.katsumi.maemo.Util.Constants.Companion.MEMO
 import com.kusumi.katsumi.maemo.Util.Constants.Companion.MEMO_SECTION_NUM
 import com.kusumi.katsumi.maemo.Util.Constants.Companion.WORD

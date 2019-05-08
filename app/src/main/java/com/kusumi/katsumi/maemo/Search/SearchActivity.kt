@@ -1,19 +1,15 @@
 package com.kusumi.katsumi.maemo.Search
 
-import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.kusumi.katsumi.maemo.DB.BaseDBOpenHelper
 import com.kusumi.katsumi.maemo.R
 import com.kusumi.katsumi.maemo.Util.BottomNavigationViewManager
@@ -26,7 +22,6 @@ import com.kusumi.katsumi.maemo.Memo.MemoDialogFragment
 import com.kusumi.katsumi.maemo.Memo.MemoListAdapter
 import com.kusumi.katsumi.maemo.Model.Memo
 import com.kusumi.katsumi.maemo.Model.Word
-import com.kusumi.katsumi.maemo.Util.Constants
 import com.kusumi.katsumi.maemo.Util.Constants.Companion.MEMO
 import com.kusumi.katsumi.maemo.Util.Constants.Companion.MEMO_SECTION_NUM
 import com.kusumi.katsumi.maemo.Util.Constants.Companion.WORD
@@ -153,6 +148,7 @@ class SearchActivity: AppCompatActivity(), ItemClickListener, PositiveButtonClic
 					memo.factText = cursor.getString(1)
 					memo.abstractText = cursor.getString(2)
 					memo.diversionText = cursor.getString(3)
+					memo.updateTime = cursor.getLong(4)
 					mMemoList?.add(memo)
 					cursor.moveToNext()
 				}
@@ -169,6 +165,7 @@ class SearchActivity: AppCompatActivity(), ItemClickListener, PositiveButtonClic
 					word._id = cursor.getInt(0)
 					word.wordTitle = cursor.getString(1)
 					word.wordContent = cursor.getString(2)
+					word.updateTime = cursor.getLong(3)
 					mWordList?.add(word)
 					cursor.moveToNext()
 				}
@@ -185,8 +182,6 @@ class SearchActivity: AppCompatActivity(), ItemClickListener, PositiveButtonClic
 	}
 
 	override fun onItemClick(view: View, position: Int) {
-		Toast.makeText(this, "Clicked $position", Toast.LENGTH_SHORT).show()
-
 		val arguments = Bundle()
 		if (mCurrentSelectedTabNum == MEMO_SECTION_NUM) {
 			val fragment = MemoDialogFragment()
@@ -255,7 +250,12 @@ class SearchActivity: AppCompatActivity(), ItemClickListener, PositiveButtonClic
 
 	override fun onRestart() {
 		super.onRestart()
-		setupWidgets()
+		Log.d("SearchActivity", "onRestart")
+	}
+
+	override fun onBackPressed() {
+		super.onBackPressed()
+		Log.d("MainActivity", "onBackPressed")
 	}
 
 	override fun onPositiveButtonClick() {
@@ -264,8 +264,4 @@ class SearchActivity: AppCompatActivity(), ItemClickListener, PositiveButtonClic
 		setupRecyclerView()
 	}
 
-	override fun onSupportNavigateUp(): Boolean {
-		onBackPressed()
-		return true
-	}
 }

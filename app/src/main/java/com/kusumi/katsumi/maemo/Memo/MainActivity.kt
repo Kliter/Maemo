@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -35,27 +36,32 @@ class MainActivity : AppCompatActivity(), ItemClickListener, PositiveButtonClick
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
 
+    override fun onStart() {
+        super.onStart()
         setupWidget()
     }
 
     private fun setupWidget() {
         ToolbarManager.setupToolbar(this, appbar)
         setupBottomNavigationView()
-        mMemoList = mutableListOf()
 
         floating_action_button.setOnClickListener {
             MemoDialogFragment().show(supportFragmentManager, "launch")
         }
 
+        mMemoList = mutableListOf()
         dbOpenHelper = MemoDBOpenHelper(this)
         memoReadableDB = dbOpenHelper.readableDatabase
 
+        // Check if the table exists.
         val cursor: Cursor = DatabaseHandler.existsTable(memoReadableDB, TABLE_NAME)
         cursor.moveToFirst()
         if (cursor.getString(0) == TABLE_EXISTS) {
             setupMemoList()
         }
+        cursor.close()
 
         recycler_view.adapter = MemoListAdapter(this, this, mMemoList)
         recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -130,17 +136,12 @@ class MainActivity : AppCompatActivity(), ItemClickListener, PositiveButtonClick
         startActivity(intent)
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        setupWidget()
+    override fun onBackPressed() {
+        super.onBackPressed()
+        moveTaskToBack(true)
     }
 
     override fun onPositiveButtonClick() {
         reload()
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
     }
 }

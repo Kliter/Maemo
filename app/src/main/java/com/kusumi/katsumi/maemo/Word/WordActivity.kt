@@ -4,6 +4,7 @@ import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -106,17 +107,27 @@ class WordActivity: AppCompatActivity(), ItemClickListener, PositiveButtonClickL
 
 	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 		if (item?.itemId == R.id.action_deletete) {
-			val deleteWordIdList = mutableListOf<Int>()
-			for (i in 0 until mWordList.size) {
-				val word = (recycler_view.adapter as WordListAdapter).wordList[i]
-				if (word.isSelected) {
-					deleteWordIdList.add(word._id)
+			AlertDialog.Builder(this)
+				.setTitle(getString(R.string.ConfirmDeleteWord))
+				.setMessage(getString(R.string.DialogConfirmText))
+				.setPositiveButton(getString(R.string.OK)) { _, _ ->
+					if (item.itemId == R.id.action_deletete) {
+						val deleteWordIdList = mutableListOf<Int>()
+						for (i in 0 until mWordList.size) {
+							val word = (recycler_view.adapter as WordListAdapter).wordList[i]
+							if (word.isSelected) {
+								deleteWordIdList.add(word._id)
+							}
+						}
+						DatabaseHandler.delete(
+							WordDBOpenHelper(this).writableDatabase, "Word", deleteWordIdList
+						)
+						reload()
+					}
+
 				}
-			}
-			DatabaseHandler.delete(
-				WordDBOpenHelper(this).writableDatabase, "Word", deleteWordIdList
-			)
-			reload()
+				.setNegativeButton(getString(R.string.Close), null)
+				.show()
 		}
 		return super.onOptionsItemSelected(item)
 	}

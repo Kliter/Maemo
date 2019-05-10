@@ -11,6 +11,10 @@
     <string name="WordTitle">刺さった言葉</string>
     <string name="WordContent">意味</string>
     <string name="Edit">編集</string>
+    <string name="ConfirmDeleteMemo">選択したメモを削除します。</string>
+    <string name="ConfirmDeleteWord">選択した単語を削除します。</string>
+    <string name="DialogConfirmText">よろしいですか？</string>
+    
     
     // Action
     <string name="ActionHome">Home</string>

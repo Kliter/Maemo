@@ -5,6 +5,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Menu
@@ -111,17 +112,24 @@ class MainActivity : AppCompatActivity(), ItemClickListener, PositiveButtonClick
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.action_deletete) {
-            val deleteMemoIdList = mutableListOf<Int>()
-            for (i in 0 until mMemoList.size) {
-                val memo = (recycler_view.adapter as MemoListAdapter).memoList[i]
-                if (memo.isSelected) {
-                    deleteMemoIdList.add(memo._id)
+            AlertDialog.Builder(this)
+                .setTitle(getString(R.string.ConfirmDeleteMemo))
+                .setMessage(getString(R.string.DialogConfirmText))
+                .setPositiveButton(getString(R.string.OK)) { _, _ ->
+                    val deleteMemoIdList = mutableListOf<Int>()
+                    for (i in 0 until mMemoList.size) {
+                        val memo = (recycler_view.adapter as MemoListAdapter).memoList[i]
+                        if (memo.isSelected) {
+                            deleteMemoIdList.add(memo._id)
+                        }
+                    }
+                    DatabaseHandler.delete(
+                        MemoDBOpenHelper(this).writableDatabase, "Memo", deleteMemoIdList
+                    )
+                    reload()
                 }
-            }
-            DatabaseHandler.delete(
-                MemoDBOpenHelper(this).writableDatabase, "Memo", deleteMemoIdList
-            )
-            reload()
+                .setNegativeButton(getString(R.string.Close), null)
+                .show()
         }
         return super.onOptionsItemSelected(item)
     }

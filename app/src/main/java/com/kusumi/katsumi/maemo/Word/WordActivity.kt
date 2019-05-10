@@ -131,19 +131,12 @@ class WordActivity: AppCompatActivity(), ItemClickListener, PositiveButtonClickL
 		startActivity(intent)
 	}
 
-	override fun onRestart() {
-		super.onRestart()
-		Log.d("WordActivity", "onRestart")
-	}
-
-	override fun onBackPressed() {
-		super.onBackPressed()
-		Log.d("MainActivity", "onBackPressed")
-	}
-
 	override fun onPositiveButtonClick() {
 		reload()
 	}
 
-
+	override fun onSupportNavigateUp(): Boolean {
+		onBackPressed()
+		return true
+	}
 }

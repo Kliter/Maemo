@@ -248,20 +248,14 @@ class SearchActivity: AppCompatActivity(), ItemClickListener, PositiveButtonClic
 		return super.onOptionsItemSelected(item)
 	}
 
-	override fun onRestart() {
-		super.onRestart()
-		Log.d("SearchActivity", "onRestart")
-	}
-
-	override fun onBackPressed() {
-		super.onBackPressed()
-		Log.d("MainActivity", "onBackPressed")
-	}
-
 	override fun onPositiveButtonClick() {
 		initListData()
 		getQueriedData(mRecentUsedQuery!!)
 		setupRecyclerView()
 	}
 
+	override fun onSupportNavigateUp(): Boolean {
+		onBackPressed()
+		return true
+	}
 }

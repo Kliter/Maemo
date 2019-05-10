@@ -144,4 +144,9 @@ class MainActivity : AppCompatActivity(), ItemClickListener, PositiveButtonClick
     override fun onPositiveButtonClick() {
         reload()
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 }
